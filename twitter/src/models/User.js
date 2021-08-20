@@ -15,23 +15,16 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter your username"],
     trim: true,
-    index: true, unique: true, sparse: true
   },
 
   password: {
     type: String,
-    required: [true, "Please enter your password"],
-    minlength: [6, "Password should be atleast minimum of 6 characters"],
-    validate(value) {
-      if (value.length < 6) {
-        throw new Error('Password should be atleast minimum of 6 characters');
-      }
-    },
+    required: true
   },
   avatar: {
     type: String,
     default:
-      "https://res.cloudinary.com/douy56nkf/image/upload/v1594060920/defaults/txxeacnh3vanuhsemfc8.png",
+      `/images/${Math.floor(Math.random()*10)}.jpeg`,
   },
   bio: String,
   website: String,
@@ -64,9 +57,7 @@ UserSchema.pre("save", async function (next) {
 });
 
 UserSchema.methods.getJwtToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_EXPIRE,
-  });
+  return jwt.sign({ id: this._id }, process.env.JWT_SECRET);
 };
 
 UserSchema.methods.checkPassword = async function (password) {

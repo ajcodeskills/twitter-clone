@@ -1,0 +1,37 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    position: sticky;
+    top: 0;
+    
+    
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+.sidebar__tweet {
+  margin-top: 16px;
+  margin-bottom: 20px;
+}
+.sidebar__profile {
+  width: 90%;
+  margin-top: auto;
+  margin-bottom: 14px;
+}
+
+  @media (min-width: 1270px) {
+    .sidebar {
+        align-items: flex-start;
+        width: 250px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .sidebar__tweet {
+      width: 80%;
+    }
+  
+}
+ 

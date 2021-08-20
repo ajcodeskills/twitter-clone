@@ -8,7 +8,7 @@ const errorHandler = require("./middlewares/errorHandler");
 const rateLimit = require("express-rate-limit");
 
 const app = express();
-
+app.use(cors())
 connectToDb();
 app.use(express.json());
 

@@ -2,6 +2,7 @@ const User = require("../models/User");
 const asyncHandler = require("../middlewares/asyncHandler");
 
 exports.login = asyncHandler(async (req, res, next) => {
+  console.log(req.body)
   const { username, password } = req.body;
 
   if (!username || !password) {
@@ -30,6 +31,7 @@ exports.login = asyncHandler(async (req, res, next) => {
 });
 
 exports.signup = asyncHandler(async (req, res, next) => {
+  console.log("register", req.body)
   const { username, password } = req.body;
 
   const user = await User.create({ username, password });
